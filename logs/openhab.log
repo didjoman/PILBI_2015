@@ -1,0 +1,205 @@
+2015-11-02 16:23:22.840 [WARN ] [o.config.core.ConfigDispatcher] - Main openHAB configuration file 'configurations/openhab.cfg' does not exist.
+2015-11-02 16:23:22.861 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2015-11-02 16:23:24.093 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2015-11-02 16:23:24.187 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2015-11-02 16:23:26.882 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2015-11-02 16:23:34.427 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2015-11-02 16:23:49.578 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2015-11-02 16:23:53.594 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2015-11-02 16:25:01.615 [WARN ] [o.config.core.ConfigDispatcher] - Main openHAB configuration file 'configurations/openhab.cfg' does not exist.
+2015-11-02 16:25:01.624 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2015-11-02 16:25:02.969 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2015-11-02 16:25:03.068 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2015-11-02 16:25:06.258 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2015-11-02 16:25:12.734 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.sitemap'
+2015-11-02 16:25:13.146 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2015-11-02 16:25:13.167 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2015-11-02 16:25:13.182 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2015-11-02 16:25:13.192 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2015-11-02 16:25:13.433 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2015-11-02 16:25:13.450 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2015-11-02 16:25:13.672 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.items'
+2015-11-02 16:27:15.267 [WARN ] [o.config.core.ConfigDispatcher] - Main openHAB configuration file 'configurations/openhab.cfg' does not exist.
+2015-11-02 16:27:15.304 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2015-11-02 16:27:18.021 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2015-11-02 16:27:18.196 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2015-11-02 16:27:23.332 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2015-11-02 16:27:26.919 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.sitemap'
+2015-11-02 16:27:27.225 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2015-11-02 16:27:27.279 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2015-11-02 16:27:27.303 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2015-11-02 16:27:27.343 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2015-11-02 16:27:27.466 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2015-11-02 16:27:27.643 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.items'
+2015-11-02 16:27:28.547 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2015-11-02 16:27:31.247 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2015-11-02 16:27:31.395 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2015-11-02 16:27:36.484 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2015-11-02 16:27:37.890 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.rules'
+2015-11-02 16:27:39.244 [ERROR] [m.r.internal.engine.RuleEngine] - Error during the execution of startup rule 'Initialize light states': Could not invoke method: org.openhab.model.script.actions.BusEvent.postUpdate(org.openhab.core.items.Item,java.lang.Number) on instance: null
+2015-11-02 16:27:39.353 [ERROR] [m.r.internal.engine.RuleEngine] - Error during the execution of startup rule 'Initialize heating states': Could not invoke method: org.openhab.model.script.actions.BusEvent.postUpdate(org.openhab.core.items.Item,java.lang.Number) on instance: null
+2015-11-02 16:27:39.476 [ERROR] [m.r.internal.engine.RuleEngine] - Error during the execution of startup rule 'Initialize contact states': Could not invoke method: org.openhab.model.script.actions.BusEvent.postUpdate(org.openhab.core.items.Item,java.lang.Number) on instance: null
+2015-11-02 16:27:40.049 [INFO ] [g.openhab.model.script.Weather] - Temperature evolved of null degrees.
+2015-11-02 16:28:00.182 [INFO ] [o.model.script.PersistenceDemo] - 2 minutes ago, the temperature was null degrees.
+2015-11-02 16:29:07.837 [WARN ] [e.jetty.servlet.ServletHandler] - /openhab.app
+org.openhab.ui.webapp.render.RenderException: Sitemap 'default' could not be found
+	at org.openhab.ui.webapp.internal.servlet.WebAppServlet.service(WebAppServlet.java:114) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ServletRegistration.service(ServletRegistration.java:61) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.processAlias(ProxyServlet.java:128) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.service(ProxyServlet.java:60) ~[na:na]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:848) ~[javax.servlet_3.0.0.v201112011016.jar:na]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:598) ~[org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:486) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1065) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:413) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:192) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:250) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.Server.handle(Server.java:350) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:454) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:890) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:944) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:630) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:77) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:606) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:46) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:603) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:538) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_66]
+2015-11-02 16:30:17.155 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2015-11-02 16:30:21.189 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2015-11-02 16:30:29.205 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2015-11-02 16:30:30.791 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2015-11-02 16:30:30.915 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2015-11-02 16:30:33.506 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2015-11-02 16:30:40.276 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.sitemap'
+2015-11-02 16:30:40.532 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2015-11-02 16:30:40.570 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2015-11-02 16:30:40.589 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2015-11-02 16:30:40.625 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2015-11-02 16:30:40.743 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2015-11-02 16:30:40.877 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.items'
+2015-11-02 16:30:41.156 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2015-11-02 16:30:45.167 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2015-11-02 16:30:45.208 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2015-11-02 16:30:50.235 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2015-11-02 16:30:51.061 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.rules'
+2015-11-02 16:30:52.131 [ERROR] [m.r.internal.engine.RuleEngine] - Error during the execution of startup rule 'Initialize light states': Could not invoke method: org.openhab.model.script.actions.BusEvent.postUpdate(org.openhab.core.items.Item,java.lang.Number) on instance: null
+2015-11-02 16:30:52.331 [ERROR] [m.r.internal.engine.RuleEngine] - Error during the execution of startup rule 'Initialize heating states': Could not invoke method: org.openhab.model.script.actions.BusEvent.postUpdate(org.openhab.core.items.Item,java.lang.Number) on instance: null
+2015-11-02 16:30:52.458 [ERROR] [m.r.internal.engine.RuleEngine] - Error during the execution of startup rule 'Initialize contact states': Could not invoke method: org.openhab.model.script.actions.BusEvent.postUpdate(org.openhab.core.items.Item,java.lang.Number) on instance: null
+2015-11-02 16:30:53.037 [INFO ] [g.openhab.model.script.Weather] - Temperature evolved of 0 degrees.
+2015-11-02 16:30:59.244 [WARN ] [e.jetty.servlet.ServletHandler] - /openhab.app
+org.openhab.ui.webapp.render.RenderException: Sitemap 'default' could not be found
+	at org.openhab.ui.webapp.internal.servlet.WebAppServlet.service(WebAppServlet.java:114) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ServletRegistration.service(ServletRegistration.java:61) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.processAlias(ProxyServlet.java:128) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.service(ProxyServlet.java:60) ~[na:na]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:848) ~[javax.servlet_3.0.0.v201112011016.jar:na]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:598) ~[org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:486) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1065) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:413) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:192) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:250) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.Server.handle(Server.java:350) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:454) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:890) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:944) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:630) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:77) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:606) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:46) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:603) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:538) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_66]
+2015-11-02 16:31:01.664 [WARN ] [e.jetty.servlet.ServletHandler] - /openhab.app
+org.openhab.ui.webapp.render.RenderException: Sitemap 'default' could not be found
+	at org.openhab.ui.webapp.internal.servlet.WebAppServlet.service(WebAppServlet.java:114) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ServletRegistration.service(ServletRegistration.java:61) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.processAlias(ProxyServlet.java:128) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.service(ProxyServlet.java:60) ~[na:na]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:848) ~[javax.servlet_3.0.0.v201112011016.jar:na]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:598) ~[org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:486) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1065) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:413) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:192) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:250) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.Server.handle(Server.java:350) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:454) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:890) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:944) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:630) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:77) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:606) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:46) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:603) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:538) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_66]
+2015-11-02 16:31:13.258 [WARN ] [e.jetty.servlet.ServletHandler] - /openhab.app
+org.openhab.ui.webapp.render.RenderException: Sitemap 'default' could not be found
+	at org.openhab.ui.webapp.internal.servlet.WebAppServlet.service(WebAppServlet.java:114) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ServletRegistration.service(ServletRegistration.java:61) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.processAlias(ProxyServlet.java:128) ~[na:na]
+	at org.eclipse.equinox.http.servlet.internal.ProxyServlet.service(ProxyServlet.java:60) ~[na:na]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:848) ~[javax.servlet_3.0.0.v201112011016.jar:na]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:598) ~[org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:486) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1065) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:413) [org.eclipse.jetty.servlet_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:192) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:250) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.Server.handle(Server.java:350) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:454) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:890) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:944) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:630) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230) [org.eclipse.jetty.http_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:77) [org.eclipse.jetty.server_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:606) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:46) [org.eclipse.jetty.io_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:603) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:538) [org.eclipse.jetty.util_8.1.3.v20120522.jar:8.1.3.v20120522]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_66]
+2015-11-02 16:31:30.957 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:33.760 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:34.877 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:35.887 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:36.401 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:37.409 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:38.920 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:31:39.432 [WARN ] [t.i.s.MapTransformationService] - Could not find a mapping for '-' in the file 'en.map'.
+2015-11-02 16:34:48.884 [INFO ] [g.openhab.model.script.Weather] - Temperature evolved of -1 degrees.
+2015-11-02 16:45:55.267 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2015-11-02 18:38:23.578 [ERROR] [g.openhab.io.net.http.HttpUtil] - Fatal transport error: java.net.UnknownHostException: weather.yahooapis.com
+2015-11-02 18:38:23.580 [ERROR] [.o.b.http.internal.HttpBinding] - No response received from 'http://weather.yahooapis.com/forecastrss?w=638242&u=c'
+2015-11-02 18:38:23.582 [ERROR] [g.openhab.io.net.http.HttpUtil] - Fatal transport error: java.net.UnknownHostException: weather.yahooapis.com
+2015-11-02 18:38:23.587 [ERROR] [.o.b.http.internal.HttpBinding] - No response received from 'http://weather.yahooapis.com/forecastrss?w=638242&u=c'
+2015-11-02 18:39:24.664 [INFO ] [g.openhab.model.script.Weather] - Temperature evolved of null degrees.
+2015-11-02 19:04:31.641 [INFO ] [g.openhab.model.script.Weather] - Temperature evolved of -1 degrees.
+2015-11-02 20:03:57.449 [ERROR] [g.openhab.io.net.http.HttpUtil] - Fatal transport error: java.net.UnknownHostException: weather.yahooapis.com
+2015-11-02 20:03:57.460 [ERROR] [.o.b.http.internal.HttpBinding] - No response received from 'http://weather.yahooapis.com/forecastrss?w=638242&u=c'
+2015-11-02 20:03:57.461 [ERROR] [g.openhab.io.net.http.HttpUtil] - Fatal transport error: java.net.UnknownHostException: weather.yahooapis.com
+2015-11-02 20:03:57.462 [ERROR] [.o.b.http.internal.HttpBinding] - No response received from 'http://weather.yahooapis.com/forecastrss?w=638242&u=c'
