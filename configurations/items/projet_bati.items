@@ -29,3 +29,6 @@ DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/Berl
 
 /* Locations */
 Location DemoLocation			"Brandenburg Gate Berlin"
+
+/* Arduino */
+String Arduino_Outdoor {serial = ""}
