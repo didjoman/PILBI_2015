@@ -1,0 +1,34 @@
+/* 
+ * Projet Infrastructure Logicielle pour Bâtiment Intelligent 2015/2016
+ * Equipe 1
+ */
+
+Group All
+/* House */
+Group gH	(All)
+/* Outdoor */
+Group Outdoor	(All)
+
+Group GH_Living 	"Living Room" 	<sofa>	 	(gH)
+Group GH_Kitchen 	"Kitchen" 		<kitchen> 	(gH)
+Group GH_Corridor 	"Corridor" 		<corridor> 	(gH)
+
+/* Living Room Equipment */
+Switch Screen_GH_Living_Room			"Ecran"				<television>	(GH_Living)
+
+/* Kitchen Equipment */
+Switch Screen_GH_Kitchen				"Ecran"				<television>	(GH_Kitchen)
+Switch Hotplate_GH_Kitchen				"Plaque de cuisson"	<kitchen>		(GH_Kitchen)
+Rollershutter SmartPillBox_GH_Kitchen	"Smart-Pilulier"	<cistern>		(GH_Kitchen)
+
+/* Outdoor Equipment */
+Contact Letterbox_Door					"Boîte aux lettres"	<cistern>		(Outdoor)
+
+/* NTP binding demo item */
+DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/Berlin:de_DE" }
+
+/* Locations */
+Location DemoLocation			"Brandenburg Gate Berlin"
+
+/* Arduino */
+String Arduino_Outdoor {serial = ""}

@@ -1,0 +1,10 @@
+sitemap projet label="PILBI House"
+{
+	Frame {
+		Group item=gH label="House" icon="firstfloor"
+		Group item=Outdoor icon="garden" 
+	}
+	Frame label="Date" {
+		Text item=Date
+	}
+}
