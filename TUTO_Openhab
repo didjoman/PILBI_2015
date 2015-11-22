@@ -26,7 +26,7 @@ Utiliser le Raspberry Pi :
 4 _ L'ordi et le Rasp. doivent être sur le même réseau / sous-réseau.
     Le mieux est de brancher l'ordi sur le rooter si on utilise un réseau public (de type école ...)
 5 _ Ensuite sur l'ordi, on recherche le Raspberry sur le réseau : 
-    a _ > hotsname -I  # donne les adresses de la machine, prendre celle qui commence par 195.
+    a _ > hostname -I  # donne les adresses de la machine, prendre celle qui commence par 195.
     b _ > nmap -sn 195.221.227.0/24  # recherche les machines présentes sur le sous réseau (il doit y en avoir au moins 2, le votre et le Rasp.).
     c _ > ssh pi@195.221.227.124  # mdp : raspberry
 

@@ -2,6 +2,7 @@ Group All
 Group gGF 		(All)
 Group gFF 		(All)
 Group gC 		(All)
+Group gLeds		(All)
 Group Outdoor 	(All)
 Group Shutters 	(All)
 Group Weather 	(All)
@@ -17,6 +18,8 @@ Group FF_Office 	"Office" 		<office> 	(gFF)
 Group FF_Child 		"Child's Room" 	<boy1> 		(gFF)
 Group FF_Bed 		"Bedroom" 		<bedroom> 	(gFF)
 Group FF_Corridor 	"Corridor" 		<corridor> 	(gFF)
+
+Group Leds_Led1		"La led"		<led>		(gLeds)
 
 /* active groups */
 Group:Switch:OR(ON, OFF) 		Lights 		"All Lights [(%d)]" 								(All)
@@ -48,6 +51,8 @@ Switch Light_C_Workshop 			"Workshop" 		(gC, Lights)
 Switch Light_Outdoor_Garage 		"Garage" 		(Outdoor, Lights)
 Switch Light_Outdoor_Terrace 		"Terrace" 		(Outdoor, Lights)
 Switch Light_Outdoor_Frontdoor 		"Frontdoor"		(Outdoor, Lights)
+
+Switch Light_Led			"Led"			(Leds_Led1, Lights){ gpio=”pin:3″ }
 
 /* Heating */
 Switch Heating_GF_Corridor 	"GF Corridor" 	<heating>	(GF_Corridor, Heating)
@@ -106,6 +111,11 @@ DateTime Weather_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
 
 /* NTP binding demo item */
 DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/Berlin:de_DE" }
+
+/* PILBI items */
+/* String Arduino "Arduino" { serial="/dev/ttyACM666@115200" } */
+/* String Arduino "Arduino" { serial="/dev/ttyACM42@115200" } */
+ String Arduino "Arduino" { serial="/dev/ttyACM4@115200" } /* > dmesg to know */
 
 /* Demo items */
 Switch DemoSwitch				"Switch"

@@ -6,6 +6,27 @@ var Number counter = 1
 var Timer timer = null
 
 /**
+* Light up the arduino light at start up.
+*/
+rule "open light"
+     when
+	System started
+     then
+	sendCommand(Arduino, "LED=ON;")
+end
+
+/**
+* Arduino -> Openhab
+*/
+rule "Arduino"
+ when 
+      Item Arduino received update
+      then
+	println("ok : Arduino received update")
+end
+
+
+/**
  * This is a demo rule which simulates a real dimmer by reacting to increase/decrease commands 
  * and posting an updated state on the bus 
  */
@@ -21,7 +42,7 @@ rule "Dimmed Light"
 
 		if(percent<0)   percent = 0
 		if(percent>100) percent = 100
-		postUpdate(DimmedLight, percent);
+		postUpdate(DimmedLight, percent)
 end
 
 /**
