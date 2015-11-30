@@ -29,5 +29,6 @@ java \
 	-Dequinox.scr.waitTimeOnBlock=60000 \
 	-Dfelix.fileinstall.active.level=4 \
 	-Djava.awt.headless=true \
+        -Dgnu.io.rxtx.SerialPorts=/dev/ttyACM666:/dev/ttyACM3:/dev/tty/ACM42 \
 	-jar $cp $* \
 	-console

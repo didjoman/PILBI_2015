@@ -9,6 +9,8 @@ Group gH	(All)
 /* Outdoor */
 Group Outdoor	(All)
 
+Group gTest	(All)
+
 Group GH_Living 	"Living Room" 	<sofa>	 	(gH)
 Group GH_Kitchen 	"Kitchen" 		<kitchen> 	(gH)
 Group GH_Corridor 	"Corridor" 		<corridor> 	(gH)
@@ -31,4 +33,6 @@ DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/Berl
 Location DemoLocation			"Brandenburg Gate Berlin"
 
 /* Arduino */
-String Arduino_Outdoor {serial = ""}
+
+String Arduino "Arduino" (All) { serial="/dev/ttyACM3" } /* > dmesg to know */
+Switch Led			"Test"		       	(gTest)
