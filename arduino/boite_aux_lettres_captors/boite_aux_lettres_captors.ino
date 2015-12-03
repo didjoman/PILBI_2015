@@ -1,13 +1,8 @@
-#include <NewPing.h>
-
-#include <NewPing.h>
-#define PinEcho     11  // broche Echo sur pin Digital 12
-#define PinTrigger  12  // broche Trigger sur pin Digital 11
-
-#define distanceMax 100 // définition de la distance maximale de captation en centimètres.
-
-/* Constante */
-int consoleOutput = 9600;
+/* --------------- Capteur Ultrason --------------- */
+int trig = 12;  // Digital 12
+int echo = 11;  // Digital 11
+long lecture_echo;
+long cm;
 
 /* --------------- Capteur de contact --------------- */
 /* Accrocher le détecteur au port analogique A0 */
@@ -18,15 +13,19 @@ boolean detect_close_door = 0;
 const char photo_resistance = 1;
 int photo_resistance_value;
 
-/* --------------- Capteur Ultrason --------------- */
-NewPing sonar(PinTrigger, PinEcho, distanceMax); // initialisation de la fonction de sonar de notre bibliothèque
-int pingLap = 50; // temps entre chaque pulsation en millisecondes.
-long pingTimer;   // minuterie entre chaque pulsation.
+/* Constante */
+int consoleOutput = 9600;
+
+/* Variable globale */
+bool getHauteur = false;
 
 /* Initialize pins states */
 void initPins() {
   pinMode(contact_sensor, INPUT);
   pinMode(photo_resistance,OUTPUT);
+  pinMode(trig, OUTPUT);
+  digitalWrite(trig, LOW);
+  pinMode(echo, INPUT);
 }
 
 /* Initialize console output */
@@ -39,23 +38,23 @@ void setup()
 {
   initPins();
   initOutput();
-  pingTimer = millis(); // initialisation de la minuterie.
 }
 
 /* Code executed in a loop */
 void loop() 
 {
   /* Capteur de contact : porte boite aux lettres */
-  if(analogRead(A0) != 0) {
+  if(analogRead(A0) == 0) {
     /* Porte ouverte */
     detect_close_door = true;
   }
-  if(detect_close_door && analogRead(A0) == 0) {
+  if(detect_close_door && analogRead(A0) != 0) {
     /* Porte fermée */
     detect_close_door = false;
     Serial.println("porte");
+    getHauteur = true;
   }
-  delay(1000);
+  
   /* Photoresistance */
   photo_resistance_value = analogRead(photo_resistance);  
   //Serial.print(photo_resistance_value);
@@ -66,19 +65,16 @@ void loop()
   }
 
   /* Capteur Ultrason */
-  if (millis() >= pingTimer)
-  {
-    pingTimer += pingLap;
-    sonar.ping_timer(echoSonar); // fonction de vérification des conditions.
+  if(getHauteur) {
+    getHauteur = false;
+    digitalWrite(trig, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trig, LOW);
+    lecture_echo = pulseIn(echo, HIGH);
+    cm = lecture_echo /100;
+    Serial.print("Distance en cm : ");
+    Serial.println(cm);
   }
-}
 
-/* Capteur Ultrason : affichage */
-void echoSonar() {
-  if (sonar.check_timer()) // fonction de vérification de la minuterie.
-  { 
-    //Serial.println("Distance à l'obstacle: ");
-    //Serial.println(sonar.convert_cm(sonar.ping_result)); // fonction de conversion du delai en microsecondes en distance en cm.
-    //Serial.println("cm");
-  }
+  delay(1000);
 }
