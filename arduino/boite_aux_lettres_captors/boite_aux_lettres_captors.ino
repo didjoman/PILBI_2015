@@ -2,7 +2,7 @@
 int trig = 12;  // Digital 12
 int echo = 11;  // Digital 11
 long lecture_echo;
-long cm;
+long mm = 0;
 
 /* --------------- Capteur de contact --------------- */
 /* Accrocher le détecteur au port analogique A0 */
@@ -10,7 +10,7 @@ int contact_sensor = 0; // A0
 boolean detect_close_door = 0;
 
 /* --------------- Photo resistance --------------- */
-const char photo_resistance = 1;
+const char photo_resistance = 2; // A2
 int photo_resistance_value;
 
 /* Constante */
@@ -38,6 +38,17 @@ void setup()
 {
   initPins();
   initOutput();
+  Serial.println("FirstMessage");
+  while(mm < 1580) {
+    digitalWrite(trig, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trig, LOW);
+    lecture_echo = pulseIn(echo, HIGH);
+    mm = lecture_echo;
+  }
+  Serial.print("MailboxHigh:");
+  Serial.print(mm);
+  Serial.println(";");
 }
 
 /* Code executed in a loop */
@@ -51,29 +62,32 @@ void loop()
   if(detect_close_door && analogRead(A0) != 0) {
     /* Porte fermée */
     detect_close_door = false;
-    Serial.println("porte");
+    Serial.println("MailboxOpenDoor");
     getHauteur = true;
   }
   
   /* Photoresistance */
-  photo_resistance_value = analogRead(photo_resistance);  
-  //Serial.print(photo_resistance_value);
-  if (photo_resistance_value < 800) {
-    //Serial.println(" - Noir");   
-  } else {
-    //Serial.println(" - lumineux");  
+  photo_resistance_value = analogRead(photo_resistance);
+  if(!detect_close_door && photo_resistance_value > 600) {
+    Serial.println("MailboxLightDetected");
+    getHauteur = true;
+    delay(3000);
   }
 
   /* Capteur Ultrason */
   if(getHauteur) {
     getHauteur = false;
-    digitalWrite(trig, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(trig, LOW);
-    lecture_echo = pulseIn(echo, HIGH);
-    cm = lecture_echo /100;
-    Serial.print("Distance en cm : ");
-    Serial.println(cm);
+    for(int i = 1; i <= 2; i++) {
+      digitalWrite(trig, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(trig, LOW);
+      lecture_echo = pulseIn(echo, HIGH);
+      mm = lecture_echo;
+      Serial.print("MailboxHigh:");
+      Serial.print(mm);
+      Serial.println(";");
+      delay(1000);
+    }
   }
 
   delay(1000);
