@@ -1,9 +1,14 @@
 import org.openhab.core.library.types.*
 import org.openhab.core.persistence.*
 import org.openhab.model.script.actions.*
+import org.openhab.model.script.actions.Timer
 
 var Number counter = 1
 var Timer timer = null
+
+var Timer timerPanOnHotplate = null
+var Timer timerHotplateWithoutPan = null
+
 
 /**
 * Light up the arduino light at start up.
@@ -27,14 +32,14 @@ rule "Mail Box"
       
       logInfo("MailBox", "Arduino state: " + Arduino.state) 
       if (state.contains("MailboxOpenedDoor")){ 
-	println("The mailbox door has been opened.");
+	println("DEBUG: Door opened.");
       } else if(state.contains("MailboxHeight")){
       	var int EMPTY = 2090;
-	var int LETTER = 2060;
+	var int LETTER = 2030;
 
 	var int valuePos = state.indexOf(":")+1
     	var int height = Integer::parseInt(state.mid(valuePos, state.indexOf(';')-valuePos))
-	println("Mailbox height: "+height)
+	println("DEBUG: Mailbox height: "+height)
 	var String mailboxState = ""
 
 	if(height >= EMPTY){
@@ -55,7 +60,7 @@ rule "Mail Box"
         postUpdate(Mailbox, mailboxState)
       
       } else if(state.contains("MailboxLightDetected")){      
-	println("Someone opened the door of the mailbox.")
+	println("DEBUG: Light detected.")
       }
   end
 
@@ -79,10 +84,83 @@ rule "Switch Led2"
 	println("ok : Arduino received update " + Led2.state)
 end
 
+
+rule Timer
+when
+	Item Hotplate changed	
+then
+	var Number TIME_LIMIT_PAN_ON_HOTPLATE = 30
+	var Number TIME_LIMIT_HOTPLATE_WITHOUT_PAN = 2
+
+	/* Hotplate is ON */
+	if(Hotplate.state == HotWithoutPan || Hotplate.state == HotWithPan){
+		sendCommand(HotplateLed,ON)		
+	}
+
+	/* Hotplate is ON && there is nothing on it : */
+	if(Hotplate.state == HotWithoutPan && timerHotplateWithoutPan == null) {
+	        /* Cancel timer that detects a pan staying too much time on the hotplate */
+	        if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
+			timerPanOnHotplate = null
+		}
+
+		/* Starts timer to shutdown the hotplane after 2mins */
+		timerHotplateWithoutPan = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
+			timerHotplateWithoutPan = null
+			sendCommand(HotplateLed,ON) 
+		]
+	}
+
+	// TODO: May have to change if state is divided in 2.
+
+	/* Hotplate is on AND there is a pan on it */
+	else if (Hotplate.state == HotWithPanWhitoutPresence && timerPanOnHotplate == null) {
+	        /* Cancel timer that detects a hotplate without pan. */
+	        if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
+			timerHotplateWithoutPan = null
+		}
+
+		/* Starts a timer to detect a pan staying too much time on the hotplate */
+		timerPanOnHotplate = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
+			timerPanOnHotplate = null
+			sendCommand(AlarmHotplateLed,ON) 
+		]
+	} 
+	
+	/* Presence detected */
+	else if(Hotplate.state == PresenceDetected){
+	     /* Re-schedule the timer if there was one */
+	     if(timerPanOnHotplate != null){
+	     	timerPanOnHotplate.reschedule(now.plusMinutes(TIME_LIMIT_PAN_ON_HOTPLATE))
+	     }
+	     
+	     /* If there was an alarm, stop it */
+	     if(AlarmHotplateLed.state == ON){
+	     	sendCommand(AlarmHotplateLed,OFF) 
+	     }
+	}
+	
+	/* Hotplate is off */
+	else if (Hotplate.state == OFF){
+	     	/* Stop all timers : */
+		if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
+			timerHotplateWithoutPan = null
+		}
+		if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
+			timerPanOnHotplate = null
+		}
+
+		/* Shutdown hotplate led */
+		sendCommand(HotplateLed, OFF) 		
+	}
+
+end
+
 /**
 * Try displaying string :
 * // TODO: To remove  + push icons
 */
+/*
 rule Startup
 when 
         System started
@@ -92,3 +170,4 @@ then
 	println("Mailbox: "+mailboxState)
         postUpdate(Mailbox, mailboxState)
 end
+*/

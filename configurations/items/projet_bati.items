@@ -34,10 +34,15 @@ Location DemoLocation			"Brandenburg Gate Berlin"
 
 /* Arduino */
 
-String Arduino			"Arduino"		(All) { serial="/dev/ttyACM5" } /* > dmesg to know */
-Number MailboxHeight 		"Mailbox Height"	(All)
+//String Arduino			"Arduino"		(All) { serial="/dev/ttyACM3" } /* > dmesg to know */
+String Arduino			"Arduino"		(All) { serial="/dev/ttyACM4" } /* > dmesg to know */
+String Hotplate			"Hotplate"		(All) { serial="/dev/ttyACM3" } /* > dmesg to know */
+
+Number MailboxHeight		"Mailbox Height"	(All)
 Switch Led1			"Led1"			(gTest)
 Switch Led2			"Led2"			(gTest)
+Switch AlarmHotplateLed		"AlarmHotplateLed"	(gTest)
+Switch HotplateLed		"HotplateLed"		(gTest)
 
 String Mailbox "Mailbox [%s]" <'mailbox'>
 
