@@ -8,33 +8,87 @@ var Timer timer = null
 /**
 * Light up the arduino light at start up.
 */
-rule "open light"
+/*
+rule "Open light1"
      when
 	System started
      then
-	sendCommand(Arduino, "SET Led ON;")
+	sendCommand(Arduino, "SET Led1 ON;")
 end
+*/
 
 /**
 * Arduino -> Openhab
 */
-rule "Arduino"
- when 
-      Item Arduino received update
-      then
-	println("ok : Arduino received update")
-end
+rule "Mail Box"
+  when Item Arduino received update then
+       /*1585 1570*/
+      var String state = Arduino.state.toString
+      
+      logInfo("MailBox", "Arduino state: " + Arduino.state) 
+      if (state.contains("MailboxOpenedDoor")){ 
+	println("The mailbox door has been opened.");
+      } else if(state.contains("MailboxHeight")){
+      	var int EMPTY = 2090;
+	var int LETTER = 2060;
+
+	var int valuePos = state.indexOf(":")+1
+    	var int height = Integer::parseInt(state.mid(valuePos, state.indexOf(';')-valuePos))
+	println("Mailbox height: "+height)
+	var String mailboxState = ""
+
+	if(height >= EMPTY){
+	   mailboxState = "Empty mailbox"
+	   postUpdate(Led1, OFF)
+	   postUpdate(Led2, OFF)
+	} else if(height >= LETTER){
+	   mailboxState = "Letter detected"
+	   postUpdate(Led1, ON)
+	   postUpdate(Led2, OFF)
+	} else {
+	   mailboxState = "Package detected"
+	   postUpdate(Led1, OFF)
+	   postUpdate(Led2, ON)
+	}
+
+	println("Mailbox: " + mailboxState)
+        postUpdate(Mailbox, mailboxState)
+      
+      } else if(state.contains("MailboxLightDetected")){      
+	println("Someone opened the door of the mailbox.")
+      }
+  end
 
 
 /**
 * Arduino -> Openhab
 */
-rule "Arduino2"
+rule "Switch Led1"
  when 
-      Item Led received update
+      Item Led1 received update
       then
-	sendCommand(Arduino, "SET Led " + (if(Led.state == ON) "ON;" else "OFF;"))
-	println("ok : Arduino received update " + Led.state)
+	sendCommand(Arduino, "SET Led1 " + (if(Led1.state == ON) "ON;" else "OFF;"))
+	println("ok : Arduino received update " + Led1.state)
 end
 
+rule "Switch Led2"
+ when 
+      Item Led2 received update
+      then
+	sendCommand(Arduino, "SET Led2 " + (if(Led2.state == ON) "ON;" else "OFF;"))
+	println("ok : Arduino received update " + Led2.state)
+end
 
+/**
+* Try displaying string :
+* // TODO: To remove  + push icons
+*/
+rule Startup
+when 
+        System started
+then
+	var String mailboxState = "Letter detected"
+
+	println("Mailbox: "+mailboxState)
+        postUpdate(Mailbox, mailboxState)
+end

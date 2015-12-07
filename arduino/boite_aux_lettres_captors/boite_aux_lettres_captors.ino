@@ -14,13 +14,18 @@ const char photo_resistance = 2; // A2
 int photo_resistance_value;
 
 /* Constante */
-int consoleOutput = 9600;
+const int consoleOutput = 9600;
+const int LED_PIN1 = 3;
+const int LED_PIN2 = 4;
 
 /* Variable globale */
 bool getHauteur = false;
+char command[500];
 
 /* Initialize pins states */
 void initPins() {
+  pinMode(LED_PIN1, OUTPUT);
+  pinMode(LED_PIN2, OUTPUT);
   pinMode(contact_sensor, INPUT);
   pinMode(photo_resistance,OUTPUT);
   pinMode(trig, OUTPUT);
@@ -36,9 +41,11 @@ void initOutput() {
 /* Code Initialized Once */
 void setup() 
 {
+ 
   initPins();
   initOutput();
   Serial.println("FirstMessage");
+  
   while(mm < 1580) {
     digitalWrite(trig, HIGH);
     delayMicroseconds(10);
@@ -46,7 +53,8 @@ void setup()
     lecture_echo = pulseIn(echo, HIGH);
     mm = lecture_echo;
   }
-  Serial.print("MailboxHigh:");
+  
+  Serial.print("MailboxHeight:");
   Serial.print(mm);
   Serial.println(";");
 }
@@ -83,11 +91,46 @@ void loop()
       digitalWrite(trig, LOW);
       lecture_echo = pulseIn(echo, HIGH);
       mm = lecture_echo;
-      Serial.print("MailboxHigh:");
+      Serial.print("MailboxHeight:");
       Serial.print(mm);
       Serial.println(";");
       delay(1000);
     }
+  }
+  
+  /* Commandes reçues */
+  if(Serial.readBytes(command, 500) == 0){
+	*command = NULL;
+  }else{
+	  char *p = command;
+	  char *str;
+	// Découpage des commandes
+	  while ((str = strtok_r(p, ";", &p)) != NULL){
+	   //actions
+            //digitalWrite(LED_PIN, HIGH);
+            
+            if(strstr(str, "SET Led1 ON") > 0) {
+              digitalWrite(LED_PIN1, HIGH);
+              Serial.println("Led On");
+            } 
+            
+            if(strstr(str, "SET Led1 OFF") > 0) {
+              digitalWrite(LED_PIN1, LOW);
+              //Serial.println("Led On");
+            } 
+            
+            if(strstr(str, "SET Led2 ON") > 0) {
+              digitalWrite(LED_PIN2, HIGH);
+              Serial.println("Led On");
+            } 
+            
+            if(strstr(str, "SET Led2 OFF") > 0) {
+              digitalWrite(LED_PIN2, LOW);
+              //Serial.println("Led On");
+            } 
+            
+            
+	}
   }
 
   delay(1000);
