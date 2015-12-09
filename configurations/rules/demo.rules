@@ -156,6 +156,14 @@ then
 
 end
 
+rule PillboxWarning
+when 
+        Time cron "0 * * * * ?"
+then
+	println("Warning pilbox")
+end
+
+
 /**
 * Try displaying string :
 * // TODO: To remove  + push icons
