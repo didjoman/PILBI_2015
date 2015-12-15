@@ -1,4 +1,4 @@
-/* Constante */
+OP/* Constante */
 const int consoleOutput = 9600;
 
 /* Bouton poussoir */
@@ -6,7 +6,9 @@ const int buttonPin = 2;  // Port digital 2
 int buttonState = 0;      // Etat courant du bouton
 
 /* Led */
-const int ledPin = 13;    // Port digital 13
+const int ledPin = 11;    // Port digital 13
+const int ALARM_HOTEPLATE_LED_PIN = 8; // Port digital 8
+
 bool ledState = false;    // Etat courant de la led
 
 /* Capteur de pression */
@@ -17,6 +19,9 @@ bool isWeighted = false;
 /* Dernier état envoyé */
 bool lastState[] = {false, false};
 
+/* Variables globales */
+char command[500];
+
 /* Initialize console output */
 void initOutput() {
   Serial.begin(consoleOutput);
@@ -25,6 +30,7 @@ void initOutput() {
 /* Initialize pins states */
 void initPins() {
   pinMode(ledPin, OUTPUT);
+  pinMode(ALARM_HOTEPLATE_LED_PIN, OUTPUT);
   pinMode(buttonPin, INPUT);
 }
 
@@ -73,6 +79,40 @@ void loop()
   /* Update current state */
   lastState[0] = ledState;
   lastState[1] = isWeighted;
+  
+  /* Receive commands */
+  if(Serial.readBytes(command, 500) == 0){
+	*command = NULL;
+  }else{
+	  char *p = command;
+	  char *str;
+	// Découpage des commandes
+	  while ((str = strtok_r(p, ";", &p)) != NULL){
+	   //actions
+            //digitalWrite(LED_PIN, HIGH);
+            
+            if(strstr(str, "SET AlarmHotplateLed ON") > 0) {
+              digitalWrite(ALARM_HOTEPLATE_LED_PIN, HIGH);
+              Serial.println("AlarmHotplateLed On");
+            } 
+            
+            if(strstr(str, "SET AlarmHotplateLed OFF") > 0) {
+              digitalWrite(ALARM_HOTEPLATE_LED_PIN, LOW);
+              Serial.println("AlarmHotplateLed Off");
+            }          
+          
+            if(strstr(str, "SET HotplateLed ON") > 0) {
+              digitalWrite(ledPin, HIGH);
+              Serial.println("HotplateLed On");
+            } 
+            
+            if(strstr(str, "SET HotplateLed OFF") > 0) {
+              digitalWrite(ledPin, LOW);
+              Serial.println("HotplateLed Off");
+            }    
+            
+	}
+  }
 
   delay(250);
 }
