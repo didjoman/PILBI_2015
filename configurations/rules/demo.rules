@@ -88,67 +88,84 @@ end
 
 rule Timer
 when
-	Item Hotplate changed	
+	/* Item Hotplate changed */
+	Item Hotplate received update
 then
-	var Number TIME_LIMIT_PAN_ON_HOTPLATE = 30
+	var Number TIME_LIMIT_HOTPLATE_WITH_PAN = 30
 	var Number TIME_LIMIT_HOTPLATE_WITHOUT_PAN = 2
 
-	/* Hotplate is ON */
-	if(Hotplate.state == HotWithoutPan || Hotplate.state == HotWithPan){
-		sendCommand(HotplateLed,ON)		
-	}
-
 	/* Hotplate is ON && there is nothing on it : */
-	if(Hotplate.state == HotWithoutPan && timerHotplateWithoutPan == null) {
-	        /* Cancel timer that detects a pan staying too much time on the hotplate */
-	        if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
-			timerPanOnHotplate = null
-		}
+	if(Hotplate.state.toString.trim == "HotWithoutPan"){
+		if(timerHotplateWithoutPan == null) {
+		        /* Cancel timer that detects a pan staying too much time on the hotplate */
+			if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
+				timerPanOnHotplate = null
+				println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
+			}
 
-		/* Starts timer to shutdown the hotplane after 2mins */
-		timerHotplateWithoutPan = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
-			timerHotplateWithoutPan = null
-			sendCommand(HotplateLed,ON) 
-		]
+			/* Starts timer to shutdown the hotplane after 2mins */
+			println("DEBUG: [Timer Started] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
+			timerHotplateWithoutPan = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
+				timerHotplateWithoutPan = null
+				sendCommand(HotplateLed,OFF)
+				println("DEBUG: [Timer Ended] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan) : hotplate deactivated")
+			]
+		}
+		else{
+			println("DEBUG: [MSG RECEIVED] (HotWithoutPan) : A timer is still running")
+		}
 	}
 
 	// TODO: May have to change if state is divided in 2.
 
 	/* Hotplate is on AND there is a pan on it */
-	else if (Hotplate.state == HotWithPanWhitoutPresence && timerPanOnHotplate == null) {
-	        /* Cancel timer that detects a hotplate without pan. */
-	        if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
-			timerHotplateWithoutPan = null
-		}
+	else if (Hotplate.state.toString.trim == "HotWithPanWhitoutPresence") {
+	        if(timerPanOnHotplate == null) {
+	        	/* Cancel timer that detects a hotplate without pan. */
+	        	if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
+				timerHotplateWithoutPan = null
+				println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
+			}
 
-		/* Starts a timer to detect a pan staying too much time on the hotplate */
-		timerPanOnHotplate = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
-			timerPanOnHotplate = null
-			sendCommand(AlarmHotplateLed,ON) 
-		]
+			/* Starts a timer to detect a pan staying too much time on the hotplate */
+			println("DEBUG: [Timer Started] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
+			timerPanOnHotplate = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
+				timerPanOnHotplate = null
+				sendCommand(AlarmHotplateLed,ON) 
+				println("DEBUG: [Timer Ended] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan) : Light alarm activated")
+			]
+		} else {
+			println("DEBUG: [MSG RECEIVED] (HotWithPanWithoutPresence) : A timer is still running")
+		}
 	} 
 	
 	/* Presence detected */
-	else if(Hotplate.state == PresenceDetected){
+	else if(Hotplate.state.toString.trim == "PresenceDetected"){
 	     /* Re-schedule the timer if there was one */
 	     if(timerPanOnHotplate != null){
-	     	timerPanOnHotplate.reschedule(now.plusMinutes(TIME_LIMIT_PAN_ON_HOTPLATE))
+	     	timerPanOnHotplate.reschedule(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITH_PAN))
+		println("DEBUG: [Timer Re-scheduled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
 	     }
 	     
 	     /* If there was an alarm, stop it */
 	     if(AlarmHotplateLed.state == ON){
 	     	sendCommand(AlarmHotplateLed,OFF) 
+		println("DEBUG: [Light Alarm Stopped] (Hotplate hot with pan)")
 	     }
 	}
 	
 	/* Hotplate is off */
-	else if (Hotplate.state == OFF){
+	else if (Hotplate.state.toString.trim == "HotplateOff"){
+		println("DEBUG: [Hotplate OFF]")
+
 	     	/* Stop all timers : */
 		if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
 			timerHotplateWithoutPan = null
+			println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
 		}
 		if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
 			timerPanOnHotplate = null
+			println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
 		}
 
 		/* Shutdown hotplate led */
@@ -156,6 +173,24 @@ then
 	}
 
 end
+
+rule "Switch HotplateLed"
+ when
+      Item HotplateLed received update
+      then
+        sendCommand(Hotplate, "SET HotplateLed " + (if(HotplateLed.state == ON) "ON;" else "OFF;"))
+        println("DEBUG: [Hotplateled] received update " + HotplateLed.state)
+end
+
+
+rule "Switch AlarmHotplateLed"
+ when
+      Item AlarmHotplateLed received update
+      then
+        sendCommand(Hotplate, "SET AlarmHotplateLed " + (if(AlarmHotplateLed.state == ON) "ON;" else "OFF;"))
+        println("DEBUG: [AlarmHotplateled] received update " + AlarmHotplateLed.state)
+end
+
 
 rule PillboxWarning
 when 
