@@ -5,6 +5,7 @@ import org.openhab.model.script.actions.Timer
 
 var Number counter = 1
 var Timer timer = null
+var EmptyKitchen = true
 
 var Timer timerPanOnHotplate = null
 var Timer timerHotplateWithoutPan = null
@@ -158,10 +159,15 @@ end
 
 rule PillboxWarning
 when 
-        Time cron "0 * * * * ?"
+  Time cron "0 * * * * ?"
 then
-	println("Warning pilbox")
+  if (EmptyKitchen == true)
+	  println("Warning pilbox")
 end
+
+rule "Pill Taken"
+when
+  
 
 
 /**
