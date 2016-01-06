@@ -1,4 +1,4 @@
-OP/* Constante */
+/* Constante */
 const int consoleOutput = 9600;
 
 /* Bouton poussoir */
