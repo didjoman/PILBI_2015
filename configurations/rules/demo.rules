@@ -5,241 +5,250 @@ import org.openhab.model.script.actions.Timer
 
 var Number counter = 1
 var Timer timer = null
-var EmptyKitchen = true
 
 var Timer timerPanOnHotplate = null
 var Timer timerHotplateWithoutPan = null
 var Timer timerAbsence = null
 
-var presence = 0
-var hotplateHotWithPan = 0
+var Number presence = 0
+var Number hotplateHotWithPan = 0
+var Number pill_taken = 0
 
 /**
-* Light up the arduino light at start up.
-*/
+ * Light up the arduino light at start up.
+ */
 /*
-rule "Open light1"
-     when
-	System started
-     then
-	sendCommand(Arduino, "SET Led1 ON;")
-end
-*/
+   rule "Open light1"
+   when
+   System started
+   then
+   sendCommand(Arduino, "SET Led1 ON;")
+   end
+ */
 
 /**
-* Arduino -> Openhab
-*/
+ * Arduino -> Openhab
+ */
 rule "Mail Box"
-  when Item Arduino received update then
-       /*1585 1570*/
-      var String state = Arduino.state.toString
-      
-      logInfo("MailBox", "Arduino state: " + Arduino.state) 
-      if (state.contains("MailboxOpenedDoor")){ 
-	println("DEBUG: Door opened.");
-      } else if(state.contains("MailboxHeight")){
-      	var int EMPTY = 2090;
-	var int LETTER = 2030;
+when Item Arduino received update then
+/*1585 1570*/
+var String state = Arduino.state.toString
 
-	var int valuePos = state.indexOf(":")+1
-    	var int height = Integer::parseInt(state.mid(valuePos, state.indexOf(';')-valuePos))
-	println("DEBUG: Mailbox height: "+height)
-	var String mailboxState = ""
+logInfo("MailBox", "Arduino state: " + Arduino.state) 
+if (state.contains("MailboxOpenedDoor")){ 
+  println("DEBUG: Door opened.");
+} else if(state.contains("MailboxHeight")){
+  var int EMPTY = 2090;
+  var int LETTER = 2030;
 
-	if(height >= EMPTY){
-	   mailboxState = "Empty mailbox"
-	   postUpdate(Led1, OFF)
-	   postUpdate(Led2, OFF)
-	} else if(height >= LETTER){
-	   mailboxState = "Letter detected"
-	   postUpdate(Led1, ON)
-	   postUpdate(Led2, OFF)
-	} else {
-	   mailboxState = "Package detected"
-	   postUpdate(Led1, OFF)
-	   postUpdate(Led2, ON)
-	}
+  var int valuePos = state.indexOf(":")+1
+    var int height = Integer::parseInt(state.mid(valuePos, state.indexOf(';')-valuePos))
+    println("DEBUG: Mailbox height: "+height)
+    var String mailboxState = ""
 
-	println("Mailbox: " + mailboxState)
-        postUpdate(Mailbox, mailboxState)
-      
-      } else if(state.contains("MailboxLightDetected")){      
-	println("DEBUG: Light detected.")
-      }
-  end
+    if(height >= EMPTY){
+      mailboxState = "Empty mailbox"
+        postUpdate(Led1, OFF)
+        postUpdate(Led2, OFF)
+    } else if(height >= LETTER){
+      mailboxState = "Letter detected"
+        postUpdate(Led1, ON)
+        postUpdate(Led2, OFF)
+    } else {
+      mailboxState = "Package detected"
+        postUpdate(Led1, OFF)
+        postUpdate(Led2, ON)
+    }
 
+  println("Mailbox: " + mailboxState)
+    postUpdate(Mailbox, mailboxState)
+
+} else if(state.contains("MailboxLightDetected")){      
+  println("DEBUG: Light detected.")
+}
+end
 
 /**
-* Arduino -> Openhab
-*/
+ * Arduino -> Openhab
+ */
 rule "Switch Led1"
- when 
-      Item Led1 received update
-      then
-	sendCommand(Arduino, "SET Led1 " + (if(Led1.state == ON) "ON;" else "OFF;"))
-	println("ok : Arduino received update " + Led1.state)
+when 
+Item Led1 received update
+then
+sendCommand(Arduino, "SET Led1 " + (if(Led1.state == ON) "ON;" else "OFF;"))
+println("ok : Arduino received update " + Led1.state)
 end
 
 rule "Switch Led2"
- when 
-      Item Led2 received update
-      then
-	sendCommand(Arduino, "SET Led2 " + (if(Led2.state == ON) "ON;" else "OFF;"))
-	println("ok : Arduino received update " + Led2.state)
+when 
+Item Led2 received update
+then
+sendCommand(Arduino, "SET Led2 " + (if(Led2.state == ON) "ON;" else "OFF;"))
+println("ok : Arduino received update " + Led2.state)
 end
 
 
 rule Timer
 when
-	/* Item Hotplate changed */
-	Item Hotplate received update
+/* Item Hotplate changed */
+Item Hotplate received update
 then
-	var Number TIME_LIMIT_HOTPLATE_WITH_PAN = 30
-	var Number TIME_LIMIT_HOTPLATE_WITHOUT_PAN = 2
-	var Number TIME_LIMIT_ABSENCE = 1
+var Number TIME_LIMIT_HOTPLATE_WITH_PAN = 30
+var Number TIME_LIMIT_HOTPLATE_WITHOUT_PAN = 2
+var Number TIME_LIMIT_ABSENCE = 1
 
-	/* Hotplate is ON && there is nothing on it : */
-	if(Hotplate.state.toString.trim == "HotWithoutPan"){
-	        hotplateHotWithPan = 0
+/* Hotplate is ON && there is nothing on it : */
+if(Hotplate.state.toString.trim == "HotWithoutPan"){
+  hotplateHotWithPan = 0
 
-		if(timerHotplateWithoutPan == null) {
-		        /* Cancel timer that detects a pan staying too much time on the hotplate */
-			if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
-				timerPanOnHotplate = null
-				println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
-			}
+    if(timerHotplateWithoutPan == null) {
+      /* Cancel timer that detects a pan staying too much time on the hotplate */
+      if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
+        timerPanOnHotplate = null
+          println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
+      }
 
-			/* Starts timer to shutdown the hotplane after 2mins */
-			println("DEBUG: [Timer Started] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
-			timerHotplateWithoutPan = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
-				timerHotplateWithoutPan = null
-				sendCommand(HotplateLed,OFF)
-				println("DEBUG: [Timer Ended] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan) : hotplate deactivated")
-			]
-		}
-		else{
-			println("DEBUG: [MSG RECEIVED] (HotWithoutPan) : A timer is still running")
-		}
-	}
+      /* Starts timer to shutdown the hotplane after 2mins */
+      println("DEBUG: [Timer Started] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
+        timerHotplateWithoutPan = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
+        timerHotplateWithoutPan = null
+        sendCommand(HotplateLed,OFF)
+        println("DEBUG: [Timer Ended] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan) : hotplate deactivated")
+        ]
+    }
+    else{
+      println("DEBUG: [MSG RECEIVED] (HotWithoutPan) : A timer is still running")
+    }
+}
 
-	else if (Hotplate.state.toString.trim == "HotWithPan") {
-	     println("DEBUG: [MSG RECEIVED] (HotWithPan) : The hotplate is hot with a pan on it.")
-	     hotplateHotWithPan = 1
-	}
+else if (Hotplate.state.toString.trim == "HotWithPan") {
+  println("DEBUG: [MSG RECEIVED] (HotWithPan) : The hotplate is hot with a pan on it.")
+    hotplateHotWithPan = 1
+}
 
-	/* Hotplate is on AND there is a pan on it */
-	else if (Hotplate.state.toString.trim == "HotWithPanWhitoutPresence") {
-	        if(timerPanOnHotplate == null) {
-	        	/* Cancel timer that detects a hotplate without pan. */
-	        	if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
-				timerHotplateWithoutPan = null
-				println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
-			}
+/* Hotplate is on AND there is a pan on it */
+else if (Hotplate.state.toString.trim == "HotWithPanWhitoutPresence") {
+  if(timerPanOnHotplate == null) {
+    /* Cancel timer that detects a hotplate without pan. */
+    if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
+      timerHotplateWithoutPan = null
+        println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
+    }
 
-			/* Starts a timer to detect a pan staying too much time on the hotplate */
-			println("DEBUG: [Timer Started] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
-			timerPanOnHotplate = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
-				timerPanOnHotplate = null
-				sendCommand(AlarmHotplateLed,ON) 
-				println("DEBUG: [Timer Ended] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan) : Light alarm activated")
-			]
-		} else {
-			println("DEBUG: [MSG RECEIVED] (HotWithPanWithoutPresence) : A timer is still running")
-		}
-	} 
-	
-	/* Presence detected */
-	else if(Hotplate.state.toString.trim == "PresenceDetected"){
+    /* Starts a timer to detect a pan staying too much time on the hotplate */
+    println("DEBUG: [Timer Started] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
+      timerPanOnHotplate = createTimer(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITHOUT_PAN)) [|
+      timerPanOnHotplate = null
+      sendCommand(AlarmHotplateLed,ON) 
+      println("DEBUG: [Timer Ended] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan) : Light alarm activated")
+      ]
+  } else {
+    println("DEBUG: [MSG RECEIVED] (HotWithPanWithoutPresence) : A timer is still running")
+  }
+} 
 
-	     /* Re-schedule the timer if there was one */
-	     if(timerPanOnHotplate != null){
-	     	timerPanOnHotplate.reschedule(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITH_PAN))
-		println("DEBUG: [Timer Re-scheduled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
-	     }
-	     
-	     /* If there was an alarm, stop it */
-	     if(AlarmHotplateLed.state == ON){
-	     	sendCommand(AlarmHotplateLed,OFF) 
-		println("DEBUG: [Light Alarm Stopped] (Hotplate hot with pan)")
-	     }
+/* Presence detected */
+else if(Hotplate.state.toString.trim == "PresenceDetected"){
 
-	     /* Start or Restart timer of absence */
-	     if(timerAbsence != null && timerAbsence.cancel()) {
-			timerAbsence = null
-			println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_ABSENCE+"min] (Absence)")
-	     }
-	     timerAbsence = createTimer(now.plusMinutes(TIME_LIMIT_ABSENCE)) [|
-			println("DEBUG: [Timer Ended] ["+TIME_LIMIT_ABSENCE+"min] (Absence) : absence detected")
-	     		if(hotplateHotWithPan == 1){
-				sendCommand(Hotplate, "HotWithPanWhitoutPresence")
-			}
-	     ]
-	}
-	
-	/* Hotplate is off */
-	else if (Hotplate.state.toString.trim == "HotplateOff"){
-		println("DEBUG: [Hotplate OFF]")
-	        hotplateHotWithPan = 0
+  presence = 1
 
-	     	/* Stop all timers (except absence) : */
-		if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
-			timerHotplateWithoutPan = null
-			println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
-		}
-		if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
-			timerPanOnHotplate = null
-			println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
-		}
+    /* Re-schedule the timer if there was one */
+    if(timerPanOnHotplate != null){
+      timerPanOnHotplate.reschedule(now.plusMinutes(TIME_LIMIT_HOTPLATE_WITH_PAN))
+        println("DEBUG: [Timer Re-scheduled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
+    }
 
-		/* Shutdown hotplate led */
-		sendCommand(HotplateLed, OFF) 		
-	}
+  /* If there was an alarm, stop it */
+  if(AlarmHotplateLed.state == ON){
+    sendCommand(AlarmHotplateLed,OFF) 
+      println("DEBUG: [Light Alarm Stopped] (Hotplate hot with pan)")
+  }
+
+  /* Start or Restart timer of absence */
+  if(timerAbsence != null && timerAbsence.cancel()) {
+    timerAbsence = null
+      println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_ABSENCE+"min] (Absence)")
+  }
+  timerAbsence = createTimer(now.plusMinutes(TIME_LIMIT_ABSENCE)) [|
+    println("DEBUG: [Timer Ended] ["+TIME_LIMIT_ABSENCE+"min] (Absence) : absence detected")
+    presence = 0
+    if(hotplateHotWithPan == 1){
+      sendCommand(Hotplate, "HotWithPanWhitoutPresence")
+    }
+  ]
+}
+
+/* Hotplate is off */
+else if (Hotplate.state.toString.trim == "HotplateOff"){
+  println("DEBUG: [Hotplate OFF]")
+    hotplateHotWithPan = 0
+
+    /* Stop all timers (except absence) : */
+    if(timerHotplateWithoutPan != null && timerHotplateWithoutPan.cancel()) {
+      timerHotplateWithoutPan = null
+        println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITHOUT_PAN+"min] (Hotplate hot without pan)")
+    }
+  if(timerPanOnHotplate != null && timerPanOnHotplate.cancel()) {
+    timerPanOnHotplate = null
+      println("DEBUG: [Timer Canceled] ["+TIME_LIMIT_HOTPLATE_WITH_PAN+"min] (Hotplate hot with pan)")
+  }
+
+  /* Shutdown hotplate led */
+  sendCommand(HotplateLed, OFF) 		
+}
 
 end
 
 rule "Switch HotplateLed"
- when
-      Item HotplateLed received update
-      then
-        sendCommand(Hotplate, "SET HotplateLed " + (if(HotplateLed.state == ON) "ON;" else "OFF;"))
-        println("DEBUG: [Hotplateled] received update " + HotplateLed.state)
+when
+Item HotplateLed received update
+then
+sendCommand(Hotplate, "SET HotplateLed " + (if(HotplateLed.state == ON) "ON;" else "OFF;"))
+println("DEBUG: [Hotplateled] received update " + HotplateLed.state)
 end
 
 
 rule "Switch AlarmHotplateLed"
- when
-      Item AlarmHotplateLed received update
-      then
-        sendCommand(Hotplate, "SET AlarmHotplateLed " + (if(AlarmHotplateLed.state == ON) "ON;" else "OFF;"))
-        println("DEBUG: [AlarmHotplateled] received update " + AlarmHotplateLed.state)
+when
+Item AlarmHotplateLed received update
+then
+sendCommand(Hotplate, "SET AlarmHotplateLed " + (if(AlarmHotplateLed.state == ON) "ON;" else "OFF;"))
+println("DEBUG: [AlarmHotplateled] received update " + AlarmHotplateLed.state)
 end
 
+
+//Règles pour le smart pilulier
 
 rule PillboxWarning
 when 
-  Time cron "0 * * * * ?"
+Time cron "0 * * * * ?"
 then
-  if (EmptyKitchen == true)
-	  println("Warning pilbox")
+println("Warning pilbox")
+sendCommand(Pillbox, "CLIGNOTE;")
 end
 
+/*
 rule "Pill Taken"
 when
-  
+Item Pillbox received update
+then
+println("pilbox taken")
+end
+*/
 
 
 /**
-* Try displaying string :
-* // TODO: To remove  + push icons
-*/
+ * Try displaying string :
+ * // TODO: To remove  + push icons
+ */
 /*
-rule Startup
-when 
-        System started
-then
-	var String mailboxState = "Letter detected"
+   rule Startup
+   when 
+   System started
+   then
+   var String mailboxState = "Letter detected"
 
-	println("Mailbox: "+mailboxState)
-        postUpdate(Mailbox, mailboxState)
-end
-*/
+   println("Mailbox: "+mailboxState)
+   postUpdate(Mailbox, mailboxState)
+   end
+ */
