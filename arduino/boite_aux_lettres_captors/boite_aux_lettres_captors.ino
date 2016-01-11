@@ -76,7 +76,7 @@ void loop()
   
   /* Photoresistance */
   photo_resistance_value = analogRead(photo_resistance);
-  if(!detect_close_door && photo_resistance_value > 600) {
+  if(!detect_close_door && photo_resistance_value > 100) {
     Serial.println("MailboxLightDetected");
     getHauteur = true;
     delay(3000);
