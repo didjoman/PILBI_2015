@@ -218,7 +218,7 @@ end
 
 
 //Règles pour le smart pilulier
-
+/*
 rule PillboxWarning
 when 
 Time cron "0 * * * * ?"
@@ -226,15 +226,20 @@ then
 println("Warning pilbox")
 sendCommand(Pillbox, "CLIGNOTE;")
 end
+*/
 
-/*
 rule "Pill Taken"
 when
 Item Pillbox received update
 then
-println("pilbox taken")
+
+// si la boite a ete ouverte, on enregistre la prise de médicament
+if(Pillbox.state.toString.trim == "PillsTaken") {
+  println("médicaments pris")
+}
+
 end
-*/
+
 
 
 /**
