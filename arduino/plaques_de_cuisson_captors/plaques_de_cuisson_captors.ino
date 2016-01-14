@@ -6,15 +6,15 @@ const int buttonPin = 2;  // Port digital 2
 int buttonState = 0;      // Etat courant du bouton
 
 /* Led */
-const int ledPin = 11;    // Port digital 13
-const int ALARM_HOTEPLATE_LED_PIN = 8; // Port digital 8
+const int ledPin = 11;                  // Port digital 13
+const int ALARM_HOTEPLATE_LED_PIN = 8;  // Port digital 8
 
 bool ledState = false;    // Etat courant de la led
 
 /* Presence Sensor */
 const int pirPin = 3;
 int pirMotionState = LOW;       // Pour commencer, nous considérons qu'il n'y a pas de nouvement.
-int pirValue = 0;                    // Variable utilisée pour lire l'entrée Pin 2 (valeur du PIR)
+int pirValue = 0;               // Variable utilisée pour lire l'entrée Pin 2 (valeur du PIR)
 
 /* Capteur de pression */
 const int panPin = A0;
