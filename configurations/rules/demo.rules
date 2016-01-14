@@ -7,7 +7,6 @@ var String USER_EMAIL = "alexrupp@free.fr"
 
 var Number counter = 1
 var Timer timer = null
-var EmptyKitchen = true
 
 var Timer timerPanOnHotplate = null
 var Timer timerHotplateWithoutPan = null
@@ -15,10 +14,11 @@ var Timer timerAbsence = null
 
 var Number presence = 0
 var Number hotplateHotWithPan = 0
+var Number pill_taken = 0
 
 /**
-* Light up the arduino light at start up.
-*/
+ * Light up the arduino light at start up.
+ */
 /*
 rule "Open light1"
      when
@@ -30,8 +30,8 @@ end
 */
 
 /**
-* Arduino -> Openhab
-*/
+ * Arduino -> Openhab
+ */
 rule "Mail Box"
   when Item Arduino received update then
        /*1585 1570*/
@@ -77,29 +77,29 @@ rule "Mail Box"
 
 
 /**
-* Arduino -> Openhab
-*/
+ * Arduino -> Openhab
+ */
 rule "Switch Led1"
- when 
-      Item Led1 received update
-      then
-	sendCommand(Arduino, "SET Led1 " + (if(Led1.state == ON) "ON;" else "OFF;"))
-	println("ok : Arduino received update " + Led1.state)
+when 
+Item Led1 received update
+then
+sendCommand(Arduino, "SET Led1 " + (if(Led1.state == ON) "ON;" else "OFF;"))
+println("ok : Arduino received update " + Led1.state)
 end
 
 rule "Switch Led2"
- when 
-      Item Led2 received update
-      then
-	sendCommand(Arduino, "SET Led2 " + (if(Led2.state == ON) "ON;" else "OFF;"))
-	println("ok : Arduino received update " + Led2.state)
+when 
+Item Led2 received update
+then
+sendCommand(Arduino, "SET Led2 " + (if(Led2.state == ON) "ON;" else "OFF;"))
+println("ok : Arduino received update " + Led2.state)
 end
 
 
 rule Timer
 when
-	/* Item Hotplate changed */
-	Item Hotplate received update
+/* Item Hotplate changed */
+Item Hotplate received update
 then
 	var Number TIME_LIMIT_HOTPLATE_WITH_PAN = 1 /* 30 */
 	var Number TIME_LIMIT_HOTPLATE_WITHOUT_PAN = 1
@@ -208,53 +208,60 @@ then
 		/* Also shutdown the alert */
 		sendCommand(AlarmHotplateLed,OFF) 
 	}
-
 end
 
 rule "Switch HotplateLed"
- when
-      Item HotplateLed received update
-      then
-        sendCommand(Hotplate, "SET HotplateLed " + (if(HotplateLed.state == ON) "ON;" else "OFF;"))
-        println("DEBUG: [Hotplateled] received update " + HotplateLed.state)
+when
+Item HotplateLed received update
+then
+sendCommand(Hotplate, "SET HotplateLed " + (if(HotplateLed.state == ON) "ON;" else "OFF;"))
+println("DEBUG: [Hotplateled] received update " + HotplateLed.state)
 end
 
 
 rule "Switch AlarmHotplateLed"
- when
-      Item AlarmHotplateLed received update
-      then
-        sendCommand(Hotplate, "SET AlarmHotplateLed " + (if(AlarmHotplateLed.state == ON) "ON;" else "OFF;"))
-        println("DEBUG: [AlarmHotplateled] received update " + AlarmHotplateLed.state)
+when
+Item AlarmHotplateLed received update
+then
+sendCommand(Hotplate, "SET AlarmHotplateLed " + (if(AlarmHotplateLed.state == ON) "ON;" else "OFF;"))
+println("DEBUG: [AlarmHotplateled] received update " + AlarmHotplateLed.state)
 end
 
+
+
+//Règles pour le smart pilulier
 /*
 rule PillboxWarning
 when 
-  Time cron "0 * * * * ?"
+Time cron "0 * * * * ?"
 then
-  if (EmptyKitchen == true)
-	  println("Warning pilbox")
+println("Warning pilbox")
+sendCommand(Pillbox, "CLIGNOTE;")
 end
 */
 
+/*
 rule "Pill Taken"
 when
-  
+Item Pillbox received update
+then
+println("pilbox taken")
+end
+*/
 
 
 /**
-* Try displaying string :
-* // TODO: To remove  + push icons
-*/
+ * Try displaying string :
+ * // TODO: To remove  + push icons
+ */
 /*
-rule Startup
-when 
-        System started
-then
-	var String mailboxState = "Letter detected"
+   rule Startup
+   when 
+   System started
+   then
+   var String mailboxState = "Letter detected"
 
-	println("Mailbox: "+mailboxState)
-        postUpdate(Mailbox, mailboxState)
-end
-*/
+   println("Mailbox: "+mailboxState)
+   postUpdate(Mailbox, mailboxState)
+   end
+ */
