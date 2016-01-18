@@ -5,6 +5,7 @@ sitemap projet label="PILBI House"
 		Text item=Mailbox
 		Switch item=Led1
 		Switch item=Led2
+		Switch item=Alarme_pilulier
 	}
 
 	Frame label="Others"{

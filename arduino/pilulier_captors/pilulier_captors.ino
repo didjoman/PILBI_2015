@@ -9,7 +9,7 @@ boolean box_open = false;
 
 /* Variables globales */
 char command[500];
-int state = 0;
+int s_clignote = 0;
 
 
 /* Initialize console output */
@@ -32,7 +32,7 @@ void setup()
 
 void loop(){ // debut de la fonction loop()
   /*LED pour le warning */
-  if (state == 1)
+  if (s_clignote == 1)
     clignote();
   if (Serial.readBytes(command, 10) == 0) {
     *command = NULL;
@@ -43,21 +43,28 @@ void loop(){ // debut de la fonction loop()
     while ((str = strtok_r(p, ";", &p)) != NULL) {
       //actions
       if (strstr(str, "CLIGNOTE") > 0) {
-        state = 1;        
+        s_clignote = 1;        
+      }
+      if (strstr(str, "STOP") > 0) {
+        s_clignote = 0;        
       }
     }
   }
   
-  /* Capteur de contact sur la pillbox pour détecter prise de médicaments */
-  Serial.println(analogRead(A3));
-  if(!box_open && analogRead(A3) == 0) {
-    /* Boite ouverte */
-    box_open = true;
-    Serial.println("Boite ouverte"); 
-  }
-  if(analogRead(A3) != 0) {
+  /* Capteur de contact sur la pillbox pour détecter prise de médicaments */  
+  if(box_open && analogRead(A3) == 0) {
     /* Boite fermée */
-    box_open = false;       
+    box_open = false;
+    Serial.println("Boite fermee"); 
+    //Serial.println(analogRead(A3));
+    delay(500);
+  }
+  else if(!box_open && analogRead(A3) != 0) {
+    /* Boite ouverte */
+    box_open = true;    
+    Serial.println("PillTaken");   
+    //Serial.println(analogRead(A3));
+    delay(500);
   }
 }
 
