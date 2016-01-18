@@ -19,15 +19,19 @@ var Number pill_taken = 0
 /**
  * Light up the arduino light at start up.
  */
-/*
+
 rule "Open light1"
      when
 	System started
      then
+     	   /* At the beginning shut every light */
+	   postUpdate(Led1, OFF)
+	   postUpdate(Led2, ON)
+
 	/* sendCommand(Arduino, "SET Led1 ON;") */
-	sendMail(USER_EMAIL, "Test", "This is the message.")
+	/* sendMail(USER_EMAIL, "Test", "This is the message.") */
 end
-*/
+
 
 /**
  * Arduino -> Openhab
@@ -36,8 +40,8 @@ rule "Mail Box"
   when Item Arduino received update then
        /*1585 1570*/
       var String state = Arduino.state.toString
-      
-      logInfo("MailBox", "Arduino state: " + Arduino.state) 
+
+      //      logInfo("MailBox", "Arduino state: " + Arduino.state) 
       if (state.contains("MailboxOpenedDoor")){ 
 	println("DEBUG: Door opened.");
       } else if(state.contains("MailboxHeight")){
@@ -61,7 +65,7 @@ rule "Mail Box"
 	   postUpdate(Led2, OFF)
 	} else {
 	   mailboxState = "Package detected"
-     	   sendMail(USER_EMAIL, "[Boite_Aux_Lettres] Lettre reçue", "Bonjour,\n Un colis vous attend dans la boite au lettre." +
+     	   sendMail(USER_EMAIL, "[Boite_Aux_Lettres] Colis reçu", "Bonjour,\n Un colis vous attend dans la boite au lettre." +
 	   					     	    	    "\n Cordialement,\n Votre Boite Au Lettre.")
 	   postUpdate(Led1, OFF)
 	   postUpdate(Led2, ON)
