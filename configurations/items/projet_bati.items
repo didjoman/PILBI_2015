@@ -14,6 +14,7 @@ Group gTest	(All)
 Group GH_Living 	"Living Room" 	<sofa>	 	(gH)
 Group GH_Kitchen 	"Kitchen" 		<kitchen> 	(gH)
 Group GH_Corridor 	"Corridor" 		<corridor> 	(gH)
+Group GH_SmartPilulier 	"Smart Pilulier" 		<pilulier> 	(gH)
 
 /* Living Room Equipment */
 Switch Screen_GH_Living_Room			"Ecran"				<television>	(GH_Living)
@@ -26,6 +27,10 @@ Rollershutter SmartPillBox_GH_Kitchen	"Smart-Pilulier"	<cistern>		(GH_Kitchen)
 /* Outdoor Equipment */
 Contact Letterbox_Door					"Boîte aux lettres"	<cistern>		(Outdoor)
 
+/*Pilbox equipement */
+Switch Alarme_pilulier		"Alarme_pilulier"	(GH_SmartPilulier) 
+Switch Fin_periode_pilulier		"Fin_periode_pilulier"	(GH_SmartPilulier)
+
 /* NTP binding demo item */
 DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/Berlin:de_DE" }
 
@@ -37,12 +42,11 @@ Location DemoLocation			"Brandenburg Gate Berlin"
 //String Arduino			"Arduino"		(All) { serial="/dev/ttyACM3" } /* > dmesg to know */
 //String Arduino			"Arduino"		(All) { serial="/dev/ttyACM4" } 
 //String Hotplate				"Hotplate"		(All) { serial="/dev/ttyACM3" } 
-String Pillbox 			"Pillbox"		(All) { serial="/dev/ttyACM3" } 
+String Pillbox 			"Pillbox"		(All) { serial="/dev/ttyACM0" } 
 
 Number MailboxHeight		"Mailbox Height"	(All)
 Switch Led1			"Led1"			(gTest)
 Switch Led2			"Led2"			(gTest)
-Switch Alarme_pilulier		"Alarme_pilulier"	(gTest)
 Switch AlarmHotplateLed		"AlarmHotplateLed"	(gTest)
 Switch HotplateLed		"HotplateLed"		(gTest)
 

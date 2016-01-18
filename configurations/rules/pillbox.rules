@@ -3,7 +3,7 @@ import org.openhab.core.persistence.*
 import org.openhab.model.script.actions.*
 import org.openhab.model.script.actions.Timer
 
-var String USER_EMAIL = "alexrupp@free.fr"
+var String USER_EMAIL = "raphaellaguerre75@gmail.com"
 
 var Number counter = 1
 var Timer timer = null
@@ -27,18 +27,31 @@ Item Alarme_pilulier received update
 then
 println("Règle pillboxwarning")
 println("etat Alarme pilulier" + Alarme_pilulier.state)
-if (Alarme_pilulier.state == ON) {
-	println("clignote si medic pas pris")
-	if (pill_taken == 0) {
-		println("Warning pilbox")
-		sendCommand(Pillbox, "CLIGNOTE;")
-	}
-}
-else {
-	println("stop clignote")
-	sendCommand(Pillbox, "STOP;")
+println("clignote si medic pas pris")
+if (pill_taken == 0) {
+	println("Warning pilbox")
+	sendCommand(Pillbox, "CLIGNOTE;")
 }
 end
+
+//Stop l'alarme à la fin d'une période de prise de médicament
+rule EndPillBoxWarning
+when
+Item Fin_periode_pilulier received update
+then
+println("règle EndPillBoxWarning")
+println("etat Fin_periode_pilulier" + Fin_periode_pilulier.state)
+println("stop clignote")
+//Si le médicament n'a pas été pris, on envoie une notification au responsable
+if (pill_taken == 0) {
+  //sendMail(USER_EMAIL, "Warning medication", "Your patient did not took his medications.") //TODO rajouter la date
+  sendCommand(Pillbox, "STOP;")
+}
+else {
+  pill_taken == 0
+}
+end
+
 
 //Enregistre la prise de médicament 
 // ou reporte une prise en trop
@@ -52,9 +65,11 @@ if(Pillbox.state.toString.trim == "PillTaken") {
 	if (pill_taken == 0) {
 		println("médicaments pris")
 		pill_taken = 1
+    sendCommand(Pillbox, "STOP;")
 	}
 	else {
 		println("envoyer notif trop de medoc")
+    sendMail(USER_EMAIL, "Too much pills", "Too many pills taken by your patient.") //TODO rajouter la date
 	}
 }
 

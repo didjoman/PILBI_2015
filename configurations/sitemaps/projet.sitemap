@@ -5,8 +5,13 @@ sitemap projet label="PILBI House"
 		Text item=Mailbox
 		Switch item=Led1
 		Switch item=Led2
-		Switch item=Alarme_pilulier
 	}
+
+  Frame label="PilBox" {
+    Text item=Pilbox
+		Switch item=Alarme_pilulier
+		Switch item=Fin_periode_pilulier
+  }
 
 	Frame label="Others"{
 		Group item=gH label="House" icon="firstfloor"
