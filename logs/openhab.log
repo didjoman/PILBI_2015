@@ -203,3 +203,354 @@ org.openhab.ui.webapp.render.RenderException: Sitemap 'default' could not be fou
 2015-11-02 20:03:57.460 [ERROR] [.o.b.http.internal.HttpBinding] - No response received from 'http://weather.yahooapis.com/forecastrss?w=638242&u=c'
 2015-11-02 20:03:57.461 [ERROR] [g.openhab.io.net.http.HttpUtil] - Fatal transport error: java.net.UnknownHostException: weather.yahooapis.com
 2015-11-02 20:03:57.462 [ERROR] [.o.b.http.internal.HttpBinding] - No response received from 'http://weather.yahooapis.com/forecastrss?w=638242&u=c'
+2016-01-18 11:02:21.438 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:02:23.364 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:02:23.489 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:02:27.310 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:02:32.714 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:02:32.952 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:02:33.001 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:02:33.015 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:02:33.026 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:02:33.095 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:02:33.240 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:02:33.872 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:02:37.017 [ERROR] [i.internal.GenericItemProvider] - Binding configuration of type 'serial' of item ‘Pillbox‘ could not be parsed correctly.
+org.openhab.model.item.binding.BindingConfigParseException: Could not open serial port /dev/ttyACM0: Serial port '/dev/ttyACM0' could not be found. Available ports are:
+/dev/ttyACM1
+/dev/ttyACM2
+/dev/ttyACM3
+
+	at org.openhab.binding.serial.internal.SerialBinding.processBindingConfiguration(SerialBinding.java:138) ~[na:na]
+	at org.openhab.model.item.internal.GenericItemProvider.internalDispatchBindings(GenericItemProvider.java:348) [org.openhab.model.item_1.7.1.jar:na]
+	at org.openhab.model.item.internal.GenericItemProvider.dispatchBindingsPerType(GenericItemProvider.java:309) [org.openhab.model.item_1.7.1.jar:na]
+	at org.openhab.model.item.internal.GenericItemProvider.addBindingConfigReader(GenericItemProvider.java:106) [org.openhab.model.item_1.7.1.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_66]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_66]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_66]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_66]
+	at org.eclipse.equinox.internal.ds.model.ComponentReference.bind(ComponentReference.java:376) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.model.ServiceComponentProp.bindReference(ServiceComponentProp.java:444) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.InstanceProcess.dynamicBind(InstanceProcess.java:416) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.Resolver.getEligible(Resolver.java:334) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.SCRManager.serviceChanged(SCRManager.java:222) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.osgi.internal.serviceregistry.FilteredServiceListener.serviceChanged(FilteredServiceListener.java:107) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.dispatchEvent(BundleContextImpl.java:861) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEventPrivileged(ServiceRegistry.java:819) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEvent(ServiceRegistry.java:771) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistrationImpl.register(ServiceRegistrationImpl.java:130) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.registerService(ServiceRegistry.java:214) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.registerService(BundleContextImpl.java:433) [org.eclipse.osgi_3.8.2.v20130124-134944.jar:na]
+	at org.eclipse.equinox.internal.ds.InstanceProcess.registerService(InstanceProcess.java:536) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.InstanceProcess.buildComponents(InstanceProcess.java:260) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.Resolver.buildNewlySatisfied(Resolver.java:473) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.Resolver.enableComponents(Resolver.java:217) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.SCRManager.performWork(SCRManager.java:816) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.SCRManager$QueuedJob.dispatch(SCRManager.java:783) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.ds.WorkThread.run(WorkThread.java:89) [org.eclipse.equinox.ds_1.4.1.v20120926-201320.jar:na]
+	at org.eclipse.equinox.internal.util.impl.tpt.threadpool.Executor.run(Executor.java:70) [org.eclipse.equinox.util_1.0.400.v20120917-192807.jar:na]
+2016-01-18 11:02:37.112 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:02:37.238 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:02:42.138 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:02:43.400 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:02:51.082 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:02:55.100 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:03:44.403 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:03:45.508 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:03:45.618 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:03:48.238 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:03:55.133 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:03:55.342 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:03:55.382 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:03:55.400 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:03:55.418 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:03:55.535 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:03:55.684 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:03:56.157 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:03:59.227 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:03:59.419 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:04:04.278 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:04:05.809 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:07:42.727 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:07:46.749 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:09:15.120 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:09:17.125 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:09:17.323 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:09:20.704 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:09:26.436 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:09:26.659 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:09:26.684 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:09:26.700 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:09:26.717 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:09:26.816 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:09:26.948 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:09:27.782 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:09:32.182 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:09:32.241 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:09:37.072 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:09:37.273 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:10:40.257 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:10:44.274 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:11:27.766 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:11:29.124 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:11:31.798 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:32.335 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:32.818 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:33.217 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:33.249 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:11:33.589 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:33.914 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:34.287 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:34.639 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:34.876 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:35.150 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:35.497 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:35.956 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:36.483 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:37.036 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:37.278 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:37.574 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:37.800 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:38.027 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:38.252 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:38.828 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:11:39.209 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:11:39.259 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:11:39.295 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:11:39.332 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:11:39.354 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:11:39.403 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:11:39.497 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:11:39.732 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:11:39.848 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:11:52.299 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:11:52.381 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:12:12.400 [WARN ] [inding.ntp.internal.NtpBinding] - the given hostname 'ptbtime1.ptb.de' of the timeserver is unknown -> returning current sytem time instead
+2016-01-18 11:14:19.958 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'pillbox.rules'
+2016-01-18 11:14:36.232 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:14:36.242 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:14:40.326 [WARN ] [j.util.thread.QueuedThreadPool] - 1 threads could not be stopped
+2016-01-18 11:14:56.635 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:14:58.147 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:14:58.298 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:15:01.090 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:15:07.844 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:15:08.090 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:15:08.115 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:15:08.134 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:15:08.149 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:15:08.224 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:15:08.385 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:15:08.858 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:15:12.960 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:15:13.079 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:15:17.997 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:15:18.529 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:18:47.181 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:18:51.198 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:19:11.377 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:19:12.714 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:19:12.835 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:19:15.532 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:19:22.395 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:19:22.650 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:19:22.689 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:19:22.715 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:19:22.742 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:19:22.855 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:19:23.007 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:19:23.269 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:19:27.742 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:19:27.776 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:19:32.791 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:19:33.154 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:20:23.096 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:20:27.115 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:22:24.649 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:22:26.046 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:22:26.115 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:22:28.511 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:22:35.672 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:22:35.863 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:22:35.884 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:22:35.907 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:22:35.917 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:22:36.056 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:22:36.203 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:22:36.624 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:22:40.865 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:22:40.902 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:22:45.922 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:22:46.319 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:22:58.505 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:23:02.526 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:23:50.289 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:23:51.502 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:23:51.607 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:23:54.661 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:24:01.097 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:24:01.386 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:24:01.433 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:24:01.465 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:24:01.485 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:24:01.615 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:24:01.865 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:24:02.064 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:24:06.837 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:24:06.874 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:24:11.858 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:24:12.103 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:24:21.579 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:24:25.593 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:39:41.992 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:39:43.906 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:39:44.076 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:39:47.592 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:39:53.365 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:39:53.653 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:39:53.692 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:39:53.710 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:39:53.732 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:39:53.858 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:39:54.089 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:39:54.574 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:39:58.347 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:39:58.455 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:40:03.478 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:40:04.290 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:40:50.062 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:40:54.080 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:42:10.514 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:42:12.227 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:42:12.337 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:42:16.076 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:42:21.849 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:42:22.146 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:42:22.190 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:42:22.206 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:42:22.226 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:42:22.373 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:42:22.590 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:42:22.779 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:42:27.759 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:42:27.839 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:42:32.763 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:42:32.796 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:43:20.479 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:43:24.497 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 11:57:53.102 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 11:57:54.471 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 11:57:54.552 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 11:57:57.927 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 11:58:04.158 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 11:58:04.371 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 11:58:04.394 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 11:58:04.452 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 11:58:04.473 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 11:58:04.567 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 11:58:04.886 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 11:58:04.913 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 11:58:09.437 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 11:58:09.451 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 11:58:14.466 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 11:58:15.259 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 11:59:34.237 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 11:59:38.256 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 12:03:19.798 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 12:03:21.399 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 12:03:21.512 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 12:03:24.654 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 12:03:30.776 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 12:03:31.080 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 12:03:31.099 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 12:03:31.111 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 12:03:31.123 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 12:03:31.266 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 12:03:31.420 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 12:03:31.973 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 12:03:35.398 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 12:03:35.544 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 12:03:40.449 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 12:03:41.552 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 12:07:41.776 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'pillbox.rules'
+2016-01-18 12:07:57.345 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 12:08:01.357 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 12:08:12.242 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 12:08:13.487 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 12:08:13.635 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 12:08:16.442 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 12:08:23.399 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 12:08:23.614 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 12:08:23.657 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 12:08:23.681 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 12:08:23.718 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 12:08:23.843 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 12:08:24.066 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 12:08:24.184 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 12:08:28.514 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 12:08:28.654 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 12:08:33.576 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 12:08:34.408 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 12:09:54.718 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'pillbox.rules'
+2016-01-18 12:10:04.780 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'pillbox.rules'
+2016-01-18 12:10:10.425 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 12:10:14.435 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 12:10:21.285 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 12:10:22.710 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 12:10:22.785 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 12:10:25.620 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 12:10:32.323 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 12:10:32.519 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 12:10:32.538 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 12:10:32.567 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 12:10:32.586 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 12:10:32.670 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 12:10:32.810 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 12:10:33.416 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 12:10:37.740 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 12:10:37.837 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 12:10:42.868 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 12:10:42.973 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 12:14:14.608 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 12:14:18.627 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 12:22:31.688 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 12:22:33.140 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 12:22:33.222 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 12:22:36.470 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 12:22:42.852 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 12:22:43.109 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 12:22:43.145 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 12:22:43.164 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 12:22:43.182 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 12:22:43.286 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 12:22:43.435 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 12:22:43.652 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 12:22:48.131 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 12:22:48.232 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 12:22:53.171 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 12:22:53.582 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 12:23:33.848 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'projet_bati.items'
+2016-01-18 12:24:03.944 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'projet_bati.items'
+2016-01-18 12:25:24.039 [INFO ] [c.internal.ModelRepositoryImpl] - Refreshing model 'projet.sitemap'
+2016-01-18 12:25:39.510 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 12:25:43.531 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
+2016-01-18 12:25:49.762 [INFO ] [.o.core.internal.CoreActivator] - openHAB runtime has been started (v1.7.1).
+2016-01-18 12:25:51.048 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - mDNS service has been started
+2016-01-18 12:25:51.211 [INFO ] [o.o.i.s.i.DiscoveryServiceImpl] - Service Discovery initialization completed.
+2016-01-18 12:25:53.746 [INFO ] [penhab.io.rest.RESTApplication] - Started REST API at /rest
+2016-01-18 12:26:00.718 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet.sitemap'
+2016-01-18 12:26:00.935 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'exec.persist'
+2016-01-18 12:26:00.974 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'rrd4j.persist'
+2016-01-18 12:26:00.993 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'logging.persist'
+2016-01-18 12:26:01.022 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'db4o.persist'
+2016-01-18 12:26:01.145 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'demo.script'
+2016-01-18 12:26:01.288 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'projet_bati.items'
+2016-01-18 12:26:01.846 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Started Classic UI at /openhab.app
+2016-01-18 12:26:06.012 [INFO ] [.service.AbstractActiveService] - NTP Refresh Service has been started
+2016-01-18 12:26:06.200 [INFO ] [.service.AbstractActiveService] - HTTP Refresh Service has been started
+2016-01-18 12:26:11.042 [WARN ] [inding.ntp.internal.NtpBinding] - couldn't establish network connection [host 'ptbtime1.ptb.de'] -> returning current sytem time instead
+2016-01-18 12:26:11.403 [INFO ] [c.internal.ModelRepositoryImpl] - Loading model 'pillbox.rules'
+2016-01-18 12:28:02.125 [INFO ] [penhab.io.rest.RESTApplication] - Stopped REST API
+2016-01-18 12:28:11.266 [INFO ] [.o.u.w.i.servlet.WebAppServlet] - Stopped Classic UI
