@@ -14,7 +14,6 @@ var Timer timerAbsence = null
 
 var Number presence = 0
 var Number hotplateHotWithPan = 0
-var Number pill_taken = 0
 
 /**
  * Light up the arduino light at start up.
@@ -230,44 +229,3 @@ then
 sendCommand(Hotplate, "SET AlarmHotplateLed " + (if(AlarmHotplateLed.state == ON) "ON;" else "OFF;"))
 println("DEBUG: [AlarmHotplateled] received update " + AlarmHotplateLed.state)
 end
-
-//Règles pour le smart pilulier
-/*
-rule PillboxWarning
-when 
-Time cron "0 * * * * ?"
-then
-println("Warning pilbox")
-sendCommand(Pillbox, "CLIGNOTE;")
-end
-*/
-
-rule "Pill Taken"
-when
-Item Pillbox received update
-then
-
-// si la boite a ete ouverte, on enregistre la prise de médicament
-if(Pillbox.state.toString.trim == "PillsTaken") {
-  println("médicaments pris")
-}
-
-end
-
-
-
-/**
- * Try displaying string :
- * // TODO: To remove  + push icons
- */
-/*
-   rule Startup
-   when 
-   System started
-   then
-   var String mailboxState = "Letter detected"
-
-   println("Mailbox: "+mailboxState)
-   postUpdate(Mailbox, mailboxState)
-   end
- */
