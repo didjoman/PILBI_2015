@@ -26,7 +26,7 @@ when
 Item Alarme_pilulier received update
 then
 println("Règle pillboxwarning")
-println("etat Alarme pilulier" + Alarme_pilulier.state)
+println("etat Alarme pilulier " + Alarme_pilulier.state)
 println("clignote si medic pas pris")
 if (pill_taken == 0) {
 	println("Warning pilbox")
@@ -40,7 +40,7 @@ when
 Item Fin_periode_pilulier received update
 then
 println("règle EndPillBoxWarning")
-println("etat Fin_periode_pilulier" + Fin_periode_pilulier.state)
+println("etat Fin_periode_pilulier " + Fin_periode_pilulier.state)
 println("stop clignote")
 //Si le médicament n'a pas été pris, on envoie une notification au responsable
 if (pill_taken == 0) {
@@ -48,7 +48,7 @@ if (pill_taken == 0) {
   sendCommand(Pillbox, "STOP;")
 }
 else {
-  pill_taken == 0
+  pill_taken = 0
 }
 end
 
@@ -69,7 +69,7 @@ if(Pillbox.state.toString.trim == "PillTaken") {
 	}
 	else {
 		println("envoyer notif trop de medoc")
-    sendMail(USER_EMAIL, "Too much pills", "Too many pills taken by your patient.") //TODO rajouter la date
+    //sendMail(USER_EMAIL, "Too much pills", "Too many pills taken by your patient.") //TODO rajouter la date
 	}
 }
 

@@ -8,7 +8,6 @@ sitemap projet label="PILBI House"
 	}
 
   Frame label="PilBox" {
-    Text item=Pilbox
 		Switch item=Alarme_pilulier
 		Switch item=Fin_periode_pilulier
   }
